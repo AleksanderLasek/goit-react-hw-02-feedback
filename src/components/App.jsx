@@ -6,18 +6,47 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    total: 0,
+    positivePercentage: 0,
   };
 
   handleGood = () => {
-    this.setState(state => ({ ...state, good: state.good + 1 }));
+    this.setState(state => ({
+      ...state,
+      good: state.good + 1,
+    }));
+    this.countTotalFeedback();
   };
 
   handleNeutral = () => {
-    this.setState(state => ({ ...state, neutral: state.neutral + 1 }));
+    this.setState(state => ({
+      ...state,
+      neutral: state.neutral + 1,
+    }));
+    this.countTotalFeedback();
   };
 
   handleBad = () => {
-    this.setState(state => ({ ...state, bad: state.bad + 1 }));
+    this.setState(state => ({
+      ...state,
+      bad: state.bad + 1,
+    }));
+    this.countTotalFeedback();
+  };
+
+  countTotalFeedback = () => {
+    this.setState(state => ({
+      ...state,
+      total: state.total + 1,
+    }));
+    this.countPositiveFeedbackPercentage();
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    this.setState(state => ({
+      ...state,
+      positivePercentage: Math.round((state.good / state.total) * 100),
+    }));
   };
 
   render() {
@@ -34,6 +63,8 @@ class App extends Component {
           <p>Good: {this.state.good}</p>
           <p>Neutral: {this.state.neutral}</p>
           <p>Bad: {this.state.bad}</p>
+          <p>Total: {this.state.total}</p>
+          <p>Positive feedback: {this.state.positivePercentage}%</p>
         </div>
       </div>
     );

@@ -1,0 +1,14 @@
+.number {
+  font-size: 18px;
+}
+
+.number::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 2px;
+  margin-right: 10px;
+  background-color: rebeccapurple;
+  border-radius: 50%;
+}
